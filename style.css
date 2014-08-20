@@ -1,0 +1,72 @@
+.container {
+	padding-top: 20px;
+}
+
+.test-field {
+	display: none;
+	font-size: 50px;
+}
+
+.test-field #test_answer {
+	width: 150px;
+	text-align: center;
+}
+
+.test-field #submit_answer {
+	font-size: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+	line-height: 50px;
+}
+
+#test_ok, #test_fail {
+	display: none;
+}
+
+#test_ok {
+	color: green;
+}
+
+#test_fail {
+	color: red;
+}
+
+.test-results {
+	display: none;
+}
+
+.test-results table.stats {
+	font-size: 30px;
+}
+
+.wrong {
+	background-color: red;
+	color: white;
+}
+
+.good {
+	background-color: green;
+	color: white;
+}
+
+.test-results table.stats th {
+	color: #ccc;
+}
+
+.test-results table.stats td, .test-results table.stats th {
+	width: 50px;
+	text-align: center;
+}
+
+.test-results table.stats td.num {
+	color: #ddd;
+	font-size: 20px;
+	padding-top: 15px;
+}
+
+#stats_add td, #stats_add th, #stats_sub td, #stats_sub th {
+	text-align: center;
+	font-size: 12px;
+	width: 30px;
+	padding: 2px 0;
+}

@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <div class="container">
+
+    	<div class="start">
+   			<div class="page-header">
+   				<h1>Addition &amp; Subtraction Test</h1>
+   			</div>
+   			<a href="#" id="start_new_test" class="btn btn-primary btn-lg">Let's go!</a>
+   		</div>
+
+   		<div class="test-field">
+   			<div class="page-header">
+   				<h1 id="test_title">Question</h1>
+   			</div>
+   			<span id="test_a"></span> <span id="test_op"></span> <span id="test_b"></span> = <input type="edit" id="test_answer">
+   			<a id="submit_answer" class="btn btn-lg btn-success">OK</a>
+   			<span id="test_ok">Good!</span>
+   			<span id="test_fail">Wrong :(</span>
+   		</div>
+
+   		<div class="test-results">
+   			<div class="page-header">
+	   			<h1>Results</h1>
+   			</div>
+   			<table class="table stats">
+   				<tr>
+   					<th>#</th>
+   					<th></th>
+   					<th></th>
+   					<th></th>
+   					<th></th>
+   					<th>Correct</th>
+   					<th>Your Answer</th>
+   				</tr>
+   			</table>
+
+   			<h1>Addition</h1>
+   			<table class="table" id="stats_add">
+   			</table>
+
+   			<h1>Subtraction</h1>
+   			<table class="table" id="stats_sub">
+   			</table>
+
+   		</div>
+
+    </div><!-- /.container -->
+
+
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="scripts.js"></script>
+</body>
+</html>
