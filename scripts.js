@@ -1,7 +1,7 @@
 var questions = [];
 var current = -1;
 
-var MIN_RES = 0, MAX_RES = 20, MAX_ARG = 20;
+var MIN_RES = 0, MAX_RES = 20, MIN_ARG = 1, MAX_ARG = 20;
 
 function getKey(a, b, type)
 {
@@ -34,6 +34,24 @@ function setStats(a, b, type, val)
 	stats[key] = val;
 	localStorage.stats = JSON.stringify(stats);
 }
+
+//+ Jonas Raoni Soares Silva
+//@ http://jsfromhell.com/array/shuffle [v1.0]
+function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
 
 function rnd(min, max)
 {
@@ -111,7 +129,7 @@ function fillTable(table, stats)
 {
 	var tr = jQuery("<tr/>");
 	tr.append(jQuery("<th/>"));
-	for (var b = 0; b < MAX_ARG; b++)
+	for (var b = MIN_ARG; b <= MAX_ARG; b++)
 	{
 		var th = jQuery("<th/>");
 		th.text(b);
@@ -119,14 +137,14 @@ function fillTable(table, stats)
 	}
 	table.append(tr);
 
-	for (var a = 0; a < MAX_ARG; a++)
+	for (var a = MIN_ARG; a <= MAX_ARG; a++)
 	{
 		var tr = jQuery("<tr/>");
 		var th = jQuery("<th/>");
 		th.text(a);
 		tr.append(th);
 
-		for (var b = 0; b < MAX_ARG; b++)
+		for (var b = MIN_ARG; b <= MAX_ARG; b++)
 		{
 			var td = jQuery("<td/>");
 			var c = getStats(a, b, stats);
@@ -143,28 +161,54 @@ function fillTable(table, stats)
 
 $("#start_new_test").click(function() {
 
-	var N = 40;
-	questions = [];
-	for (var i = 0; i < N; i++)
+	var candidates = [];
+
+	for (var a = MIN_ARG; a <= MAX_ARG; a++)
 	{
-		var a, b, c = MAX_RES + 1, op;
-		while(c < MIN_RES || c > MAX_RES)
+		for (var b = MIN_ARG; b <= MAX_ARG; b++)
 		{
-			if (rnd(0, 2) == 0)
+			// addition
+			if (a + b <= MAX_RES)
 			{
-				op = "-";
-				a = rnd(2, MAX_ARG);
-				b = rnd(1, a);
-				c = a - b;
+				var s = getStats(a, b, "+");
+				var cnt = s > 1 ? 1 : 10 - s;
+				var key = a * 1000 + b;
+				while(cnt-- > 0) candidates.push(key);
 			}
-			else
+			// subtraction
+			if (a >= b)
 			{
-				op = "+";
-				a = rnd(1, MAX_ARG);
-				b = rnd(1, MAX_ARG);
-				c = a + b;
+				var s = getStats(a, b, "-");
+				var cnt = s > 1 ? 1 : 10 - s;
+				var key = -a * 1000 - b;
+				while(cnt-- > 0) candidates.push(key);
 			}
 		}
+	}
+
+	candidates = shuffle(candidates);
+
+	var N = 40;
+	questions = [];
+
+	for (var i = 0; i < N; i++)
+	{
+		var idx = rnd(0, candidates.length);
+		var key = candidates[idx];
+		candidates.remove(key);
+
+		var op = "+";
+		if (key < 0)
+		{
+			op = "-";
+			key = -key;
+		}
+
+		var a = Math.floor(key / 1000);
+		var b = key % 1000;
+
+		var c = op == "+" ? a + b : a - b;
+
 		questions.push({"a":a, "op":op, "b":b, "res":c});
 	}
 
