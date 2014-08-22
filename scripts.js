@@ -225,6 +225,11 @@ $("#start_new_test").click(function() {
 
 $("#submit_answer").click(function() {
 	var answer = $("#test_answer").val();
+	if (answer == "" || isNaN(answer)) {
+		$("#test_answer").val("");
+		$("#test_answer").focus();
+	 	return;	
+	}
 
 	var q = questions[current];
 
