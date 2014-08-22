@@ -2,6 +2,9 @@ var questions = [];
 var current = -1;
 
 var MIN_RES = 0, MAX_RES = 20, MIN_ARG = 1, MAX_ARG = 20;
+var QUESTIONS_NUMBER = 40;
+var DELAY_CORRECT = 2000, DELAY_INCORRECT = 5000;
+
 
 function getKey(a, b, type)
 {
@@ -188,10 +191,9 @@ $("#start_new_test").click(function() {
 
 	candidates = shuffle(candidates);
 
-	var N = 40;
 	questions = [];
 
-	for (var i = 0; i < N; i++)
+	for (var i = 0; i < QUESTIONS_NUMBER; i++)
 	{
 		var idx = rnd(0, candidates.length);
 		var key = candidates[idx];
@@ -242,7 +244,7 @@ $("#submit_answer").click(function() {
 	var a = q["a"], b = q["b"], op = q["op"];
 	var stats_val = getStats(a, b, op);
 
-	var d = 2000;
+	var d = DELAY_CORRECT;
 	if (answer == correct)
 	{
 		stats_val += 1;
@@ -252,7 +254,7 @@ $("#submit_answer").click(function() {
 	{
 		stats_val -= 1;
 		$("#test_fail").show();
-		d = 5000;
+		d = DELAY_INCORRECT;
 	}
 
 	setStats(a, b, op, stats_val);
