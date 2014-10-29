@@ -19,7 +19,7 @@
 	line-height: 50px;
 }
 
-#test_ok, #test_fail {
+#test_ok, #test_fail, #test_late {
 	display: none;
 }
 
@@ -27,9 +27,18 @@
 	color: green;
 }
 
-#test_fail {
+#test_fail, #test_late {
 	color: red;
 }
+
+.progress .progress-bar {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
 
 .test-results {
 	display: none;
