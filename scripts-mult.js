@@ -7,7 +7,7 @@ var timeout_id = 0;
 var MIN_ARG = 2, MAX_ARG = 4;
 var QUESTIONS_NUMBER = 20;
 var DELAY_CORRECT = 2000, DELAY_INCORRECT = 5000;
-var TIME_MS = 15000, TIME_TICK = 500;
+var TIME_MS = 12000, TIME_TICK = 500;
 
 
 function getKey(a, b)
