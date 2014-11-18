@@ -4,8 +4,8 @@ var current = -1;
 var current_time = 0;
 var timeout_id = 0;
 
-var MIN_ARG = 2, MAX_ARG = 4;
-var QUESTIONS_NUMBER = 20;
+var MIN_ARG = 2, MAX_ARG = 5;
+var QUESTIONS_NUMBER = 30;
 var DELAY_CORRECT = 2000, DELAY_INCORRECT = 5000;
 var TIME_MS = 12000, TIME_TICK = 500;
 
